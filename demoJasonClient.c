@@ -22,7 +22,7 @@ int main(void) {
     bzero(&server_info, sizeof(server_info));
     server_info.sin_family = AF_INET;
     server_info.sin_port = 7000;
-    server_info.sin_addr.s_addr = inet_addr("192.168.1.100");
+    server_info.sin_addr.s_addr = inet_addr("127.0.0.1");
  
     if (-1 == connect(sockfd, (struct sockaddr *)&server_info, 
             sizeof(server_info))) {
