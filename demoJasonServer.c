@@ -12,7 +12,8 @@ int main(void) {
     //第一步：创建socket  
     // socket()：地址族：IPV4协议  套接字类型：流式套接字
     int sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (-1 == sockfd) {
+    if (sockfd == -1) 
+    {
         perror("socket");
         exit(1);
     }
@@ -25,14 +26,15 @@ int main(void) {
     //server_info.sin_addr.s_addr = 127.0.0.1; // 表示回环IP 用于测试
     server_info.sin_addr.s_addr = inet_addr("127.0.0.1");
  
-    if (bind(sockfd, (struct sockaddr *)&server_info,
-        sizeof(server_info)) == -1) {
+    if (bind(sockfd, (struct sockaddr *)&server_info,sizeof(server_info)) == -1) 
+    {
         perror("bind");
         exit(2);
     }
  
     // 第三步：设置监听队列
-    if (listen(sockfd, 10) == -1) {
+    if (listen(sockfd, 10) == -1) 
+    {
         perror("listen");
         exit(3);
     }
@@ -44,7 +46,8 @@ int main(void) {
     int length = sizeof(client_info);
  
     int fd = accept(sockfd, (struct sockaddr *)&client_info, &length);
-    if (-1 == fd) {
+    if (fd == -1) 
+    {
         perror("accept");
         exit(4);
     }
@@ -56,7 +59,8 @@ int main(void) {
     ssize_t size;
  
     size = recv(fd, buf, sizeof(buf), 0);
-    if (-1 == size) {
+    if (size == -1) 
+    {
         perror("recv");
         exit(5);
     }

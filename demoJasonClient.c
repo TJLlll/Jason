@@ -9,10 +9,12 @@
 #include <json-c/json.h>
  
  
-int main(void) {
+int main(void) 
+{
     // 第一步：创建socket
     int sockfd = socket(AF_INET, SOCK_STREAM, 0); 
-    if (-1 == sockfd) {
+    if (sockfd == -1) 
+    {
         perror("socket");
         exit(1);
     }   
@@ -24,8 +26,8 @@ int main(void) {
     server_info.sin_port = 7000;
     server_info.sin_addr.s_addr = inet_addr("127.0.0.1");
  
-    if (-1 == connect(sockfd, (struct sockaddr *)&server_info, 
-            sizeof(server_info))) {
+    if (connect(sockfd, (struct sockaddr *)&server_info, sizeof(server_info)) == -1) 
+    {
         perror("connect");
         exit(2);
     }
@@ -37,7 +39,8 @@ int main(void) {
  
     const char *buf = json_object_to_json_string(json);
  
-    if (-1 == send(sockfd, buf, strlen(buf), 0)) {
+    if (send(sockfd, buf, strlen(buf), 0)== -1) 
+    {
         perror("send");
         exit(3);
     }
