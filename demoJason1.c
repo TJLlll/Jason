@@ -3,7 +3,8 @@
 #include <string.h>
 #include <json-c/json.h>
  
-int main(void) {
+int main(void) 
+{
     //一、创建JSON
     // 1、创建空json对象
     struct json_object *obj = json_object_new_object();
@@ -23,7 +24,8 @@ int main(void) {
  
     // 2：根据json对象类型转换成对应的数据
     json_type type = json_object_get_type(json);// 先获取json对象类型
-    if (json_type_string == type) {
+    if (json_type_string == type) 
+    {
         printf("name: %s\n", json_object_get_string(json));
     }
  
